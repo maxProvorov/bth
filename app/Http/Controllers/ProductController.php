@@ -25,7 +25,7 @@ class ProductController extends Controller
         ]);
 
         Product::create(array_merge($validated, ['data' => $data]));
-
+        
         return redirect()->route('products.index');
     }
 

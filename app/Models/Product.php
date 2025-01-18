@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Jobs\SendProductNotification;
 
 class Product extends Model
 {
@@ -20,5 +21,12 @@ class Product extends Model
     public function scopeAvailable($query)
     {
         return $query->where('status', 'available');
+    }
+
+    protected static function booted()
+    {
+        static::created(function ($product) {
+            SendProductNotification::dispatch($product);
+        });
     }
 }

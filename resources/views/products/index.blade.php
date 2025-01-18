@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function addDataField(key = '', value = '') {
         const dataContainer = document.getElementById('dataFields');
         const fieldGroup = document.createElement('div');
-        fieldGroup.className = 'input-group mb-2';
+        fieldGroup.className = 'input-group';
 
         fieldGroup.innerHTML = `
             <input type="text" name="data_keys[]" class="form-control" placeholder="Key" value="${key}">
@@ -140,15 +140,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const dataContainer = document.getElementById('dataFields');
             dataContainer.innerHTML = '';
             if (isEdit && this.dataset.data) {
-                try {
-                    const data = JSON.parse(this.dataset.data);
-                    if (data && typeof data === 'object') {
-                        Object.entries(data).forEach(([key, value]) => {
-                            addDataField(key, value);
-                        });
-                    }
-                } catch (e) {
-                    console.error('Ошибка парсинга JSON данных:', e);
+                const data = JSON.parse(this.dataset.data);
+                if (data && typeof data === 'object') {
+                    Object.entries(data).forEach(([key, value]) => {
+                        addDataField(key, value);
+                    });
                 }
             }
 
@@ -156,10 +152,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Добавление нового поля данных
+    // Добавление нового поля для данных
     document.getElementById('addDataField').addEventListener('click', function () {
         addDataField();
     });
 });
-
 </script>

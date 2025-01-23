@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'email' => 'maxiys1@rambler.ru',
+    'email' => 'test@test.test',
+    'admin_email' => 'admin@gmail.com',
     'role' => [
         'admin' => 'admin',
         'user' => 'user',

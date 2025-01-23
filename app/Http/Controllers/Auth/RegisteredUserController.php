@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $role = $request->email == 'admin@gmail.com' ? 'admin' : 'user';
+        $role = $request->email == config('products.admin_email') ? 'admin' : 'user';
 
         $user = User::create([
             'name' => $request->name,

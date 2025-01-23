@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Requests\ProductRequest;
+use App\Jobs\SendProductNotification;
 
 class ProductController extends Controller
 {
@@ -24,7 +25,9 @@ class ProductController extends Controller
             'status' => 'required',
         ]);
 
-        Product::create(array_merge($validated, ['data' => $data]));
+        $product = Product::create(array_merge($validated, ['data' => $data]));
+
+        SendProductNotification::dispatch($product);
         
         return redirect()->route('products.index');
     }

@@ -23,10 +23,10 @@ class Product extends Model
         return $query->where('status', 'available');
     }
 
-    protected static function booted()
-    {
-        static::created(function ($product) {
-            SendProductNotification::dispatch($product);
-        });
-    }
+    // protected static function booted()
+    // {
+    //     static::created(function ($product) {
+    //         SendProductNotification::dispatch($product);
+    //     });
+    // }
 }

@@ -9,6 +9,7 @@
     <thead>
         <tr>
             <th>ID</th>
+            <th>Image</th>
             <th>Article</th>
             <th>Name</th>
             <th>Status</th>
@@ -20,6 +21,7 @@
         @foreach ($products as $product)
             <tr>
                 <td>{{ $product->id }}</td>
+                <td><img style="width: 120px;" src="https://placehold.co/600x400" alt=""></td>
                 <td>{{ $product->article }}</td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->status }}</td>
